@@ -124,7 +124,7 @@ func generate(ctx context.Context, files []string) error {
 			}
 		}
 
-		output += `<script src="http://localhost:35700/livereload.js?snipver=1"></script>`
+		output += `<script src="http://localhost:35700/livereload.js?snipver=1"></script>` + "\n"
 
 		destFilename := filepath.Join(*outputFolder, file+".html")
 		if err := os.MkdirAll(filepath.Dir(destFilename), 0700); err != nil {

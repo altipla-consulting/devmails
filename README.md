@@ -30,7 +30,7 @@ devmails -src my/folder/src -output other/folder/output -data other-other/folder
 To run the generator a single time and close afterwards without watching changes in the files:
 
 ```shell
-devmails -watch false
+devmails -watch=false
 ```
 
 
