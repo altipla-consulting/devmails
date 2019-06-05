@@ -8,3 +8,7 @@ gofmt:
 
 test:
 	@actools go test ./... -src /workspace/testdata/src -output /workspace/tmp/output -data /workspace/testdata/data -watch false
+
+run:
+	actools go install ./cmd/devmails
+	actools run go devmails -src /workspace/testdata/src -output /workspace/tmp/output -data /workspace/testdata/data
