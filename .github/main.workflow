@@ -6,7 +6,7 @@ workflow "Test on push" {
 
 action "Test" {
   uses = "actions-contrib/go@master"
-  args = "test -race ./... -src ./testdata/src -output ./tmp/output -data ./testdata/data -watch=false"
+  args = "test -race ./... -src testdata/src -data testdata/data -watch=false"
 }
 
 workflow "Publish on release" {

@@ -18,7 +18,7 @@ func compareFile(t *testing.T, name string) {
 	content, err := ioutil.ReadFile(filepath.Join(*outputFolder, name+".html"))
 	require.NoError(t, err)
 
-	compare, err := ioutil.ReadFile("/workspace/testdata/compare/" + name + ".html")
+	compare, err := ioutil.ReadFile("testdata/compare/" + name + ".html")
 	require.NoError(t, err)
 
 	require.Equal(t, string(content), string(compare))

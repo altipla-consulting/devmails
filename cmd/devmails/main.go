@@ -24,7 +24,7 @@ import (
 
 var (
 	srcFolder    = flag.String("src", "src", "Source folder")
-	outputFolder = flag.String("output", "output", "Output folder")
+	outputFolder = flag.String("output", "/tmp/devmails-output", "Output folder")
 	dataFolder   = flag.String("data", "data", "Data folder")
 	watch        = flag.Bool("watch", true, "Watch changes and reload every time")
 )

@@ -13,7 +13,7 @@ curl -sSL https://git.io/fjuM7 | sudo bash
 
 ## Usage
 
-Run the app in the folder where you have a `src` folder with the templates and a `data` folder with the custom data. See the [testdata](testdata) folder for an example of the structure.
+Run the app in the folder where you have a `src` folder with the templates and a `data` folder with the custom data. See the [testdata](cmd/devmails/testdata) folder for an example of the structure.
 
 ```shell
 devmails
