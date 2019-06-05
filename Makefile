@@ -7,4 +7,4 @@ gofmt:
 	@actools gofmt -r '&α{} -> new(α)' -w $(FILES)
 
 test:
-	actools go test ./...
+	@actools go test ./... -src /workspace/testdata/src -output /workspace/tmp/output -data /workspace/testdata/data -watch false
