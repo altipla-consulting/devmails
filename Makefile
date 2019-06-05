@@ -11,4 +11,4 @@ test:
 
 run:
 	actools go install ./cmd/devmails
-	actools run go devmails -src testdata/src -data testdata/data
+	actools run go devmails -src cmd/devmails/testdata/src -data cmd/devmails/testdata/data
