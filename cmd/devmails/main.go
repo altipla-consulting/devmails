@@ -87,6 +87,29 @@ func run() error {
 	return nil
 }
 
+type renderData struct {
+	User           renderUser
+	Sending        renderSending
+	Params         map[string]interface{}
+	UnsubscribeURL string
+}
+
+type renderUser struct {
+	ID          int64
+	Name, Email string
+}
+
+type renderSending struct {
+	From     renderFrom
+	Subject  string
+	ID       int64
+	Template string
+}
+
+type renderFrom struct {
+	Name, Email string
+}
+
 func generate(ctx context.Context, files []string) error {
 	ctx, cancel := context.WithTimeout(ctx, 30*time.Second)
 	defer cancel()
@@ -94,15 +117,32 @@ func generate(ctx context.Context, files []string) error {
 	for _, file := range files {
 		log.WithField("path", filepath.Join(*srcFolder, file+".mjml")).Info("Generate template")
 
-		rawData, err := ioutil.ReadFile(filepath.Join(*dataFolder, file+".json"))
+		rawParams, err := ioutil.ReadFile(filepath.Join(*dataFolder, file+".json"))
 		if err != nil && !os.IsNotExist(err) {
 			return errors.Trace(err)
 		} else if err != nil {
-			rawData = []byte("{}")
+			rawParams = []byte("{}")
 		}
 
-		var data interface{}
-		if err := json.Unmarshal(rawData, &data); err != nil {
+		data := renderData{
+			User: renderUser{
+				ID:    7,
+				Name:  "Usuario de pruebas",
+				Email: "usuario-pruebas@example.com",
+			},
+			Sending: renderSending{
+				From: renderFrom{
+					Name:  "Origen de pruebas",
+					Email: "origen-pruebas@example.com",
+				},
+				Subject:  "Asunto del correo de prueba",
+				ID:       16,
+				Template: file,
+			},
+			Params:         make(map[string]interface{}),
+			UnsubscribeURL: "https://www.example.com/unsubscribe?token=foo-token",
+		}
+		if err := json.Unmarshal(rawParams, &data.Params); err != nil {
 			return errors.Trace(err)
 		}
 
